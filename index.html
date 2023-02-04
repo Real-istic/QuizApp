@@ -32,31 +32,31 @@
         <div class="card quiz-card">
             <img src="img/brainbg.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Frage</h5>
+                <h5 class="card-title" id="questionText"></h5>
                 <div class="card mb-2">
-                    <div class="card-body">
+                    <div onclick="answer(1)" class="card-body quiz-answer-card" id="answer1">
                         Antwort 1
                     </div>
                 </div>
-                <div class="card mb-2">
-                    <div class="card-body">
+                <div onclick="answer(2)" class="card mb-2">
+                    <div class="card-body quiz-answer-card" id="answer2">
                         Antwort 2
                     </div>
                 </div>
-                <div class="card mb-2">
-                    <div class="card-body">
+                <div onclick="answer(3)" class="card mb-2">
+                    <div class="card-body quiz-answer-card" id="answer3">
                         Antwort 3
                     </div>
                 </div>
-                <div class="card mb-2">
-                    <div class="card-body">
+                <div onclick="answer(4)" class="card mb-2">
+                    <div class="card-body quiz-answer-card" id="answer4">
                         Antwort 4
                     </div>
                 </div>
 
                 <div class="question-footer">
-                    <span>
-                        <b>1</b> von <b>5</b> Fragen
+                    <span >
+                        <b id="currentQCount">1</b> von <b id="maxQcount"></b> Fragen
                     </span>
                     <button class="btn btn-primary">nächste Frage</button>
                 </div>
