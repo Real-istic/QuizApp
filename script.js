@@ -1,8 +1,8 @@
 let maxQ = questions.length;
 let currentQuestion = 0;
 
-function init() {
-    
+function init(answerField) {
+
     document.getElementById('maxQcount').innerHTML = `${maxQ}`;
     document.getElementById('currentQCount').innerHTML = `${currentQuestion + 1}`;
     showQuestion()
@@ -28,17 +28,15 @@ function showAnswers(question) {
 }
 
 function answer(ans) {
-    
+
     let question = questions[currentQuestion];
     let answerField = document.getElementById('answer' + ans);
 
     if (ans == question.right_answer) {
-        currentQuestion++;
-        alert('RICHTIG! Du bist super! :) ')
-        init()
+        answerField.classList.add('text-bg-success')
+        alert('😊 RICHTIG! 😊')
         return
     }
     answerField.classList.add('text-bg-danger')
-    answerField.classList.add('p-3')
-    alert('falsche Antwort ;(');
+    alert('☹ falsch ☹');
 }
