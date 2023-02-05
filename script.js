@@ -2,6 +2,9 @@ let maxQ = questions.length;
 let currentQuestion = 0;
 let rightAnswers = 0;
 
+var firstAnswerStatus = true;
+
+
 let AUDIOsuccess = new Audio('sounds/success.mp3');
 let AUDIOfail = new Audio('sounds/fail.mp3');
 
@@ -57,8 +60,6 @@ function showAnswers(question) {
     answer2.innerHTML = question.answer2
     answer3.innerHTML = question.answer3
     answer4.innerHTML = question.answer4
-
-
 }
 
 function answer(ans) {
@@ -72,9 +73,7 @@ function answer(ans) {
         rightAnswers++;
         document.getElementById('nextButton').disabled = false;
         AUDIOsuccess.play();
-
         init()
-
     } else {
         correctAnswer.classList.add('text-bg-success');
         answerField.classList.add('text-bg-danger');
@@ -89,11 +88,8 @@ function nextQuestion() {
     for (let answerCard of answerCards) {
         answerCard.classList.remove('text-bg-success');
         answerCard.classList.remove('text-bg-danger');
-        
-
     }
     document.getElementById('nextButton').disabled = true;
-    answerCards.onclick = true;
     currentQuestion++;
 
     init()
