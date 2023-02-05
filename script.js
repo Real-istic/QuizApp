@@ -2,24 +2,41 @@ let maxQ = questions.length;
 let currentQuestion = 0;
 let rightAnswers = 0;
 
+let AUDIOsuccess = new Audio('sounds/success.mp3');
+let AUDIOfail = new Audio('sounds/fail.mp3');
+
 function init() {
 
     document.getElementById('maxQcount').innerHTML = `${maxQ}`;
     document.getElementById('currentQCount').innerHTML = `${currentQuestion + 1}`;
     if (currentQuestion >= 8) {
-        let cardBody = document.getElementById('cardBody');
-        cardBody.innerHTML =/*html*/ `
-        <div class="final-screen">
-        <h1>Quiz beendet! </h1>
-        <img src="" alt="">
-        <span>Du hast ${rightAnswers} von ${maxQ} Fragen beantwortet</span>
-        </div>
-        `;
-        alert('Gratulation!');
-        return;
+        insertHTML();
     }
     statusBar()
     showQuestion()
+
+}
+
+function insertHTML() {
+    let cardBody = document.getElementById('cardBody');
+    cardBody.innerHTML =/*html*/ `
+        <div class="final-screen">
+            <h1>Quiz beendet! </h1>
+            <img src="img/Group 5.png" alt="">
+            <br>
+            <h5>Du hast ${rightAnswers} von ${maxQ} Fragen beantwortet</h5>
+            <br>
+            <button class="btn btn-primary" onclick="restart()">Quiz neu starten</button>
+        </div>
+        `;
+    alert('Gratulation!');
+    return;
+}
+
+function statusBar() {
+    let progressBar = document.getElementById('progressBar').style;
+    let width = ((currentQuestion + 1) / questions.length) * 100;
+    progressBar.width = width + "%";
 }
 
 function showQuestion() {
@@ -30,7 +47,7 @@ function showQuestion() {
 }
 
 function showAnswers(question) {
-    
+
     let answer1 = document.getElementById('answer1');
     let answer2 = document.getElementById('answer2');
     let answer3 = document.getElementById('answer3');
@@ -40,6 +57,8 @@ function showAnswers(question) {
     answer2.innerHTML = question.answer2
     answer3.innerHTML = question.answer3
     answer4.innerHTML = question.answer4
+
+
 }
 
 function answer(ans) {
@@ -52,12 +71,15 @@ function answer(ans) {
         answerField.classList.add('text-bg-success')
         rightAnswers++;
         document.getElementById('nextButton').disabled = false;
+        AUDIOsuccess.play();
+
         init()
 
     } else {
         correctAnswer.classList.add('text-bg-success');
         answerField.classList.add('text-bg-danger');
         document.getElementById('nextButton').disabled = false;
+        AUDIOfail.play();
     }
 }
 
@@ -67,15 +89,16 @@ function nextQuestion() {
     for (let answerCard of answerCards) {
         answerCard.classList.remove('text-bg-success');
         answerCard.classList.remove('text-bg-danger');
+        
+
     }
     document.getElementById('nextButton').disabled = true;
+    answerCards.onclick = true;
     currentQuestion++;
-    
+
     init()
 }
 
-function statusBar(){
-    let progressBar = document.getElementById('progressBar').style;
-    let width = ((currentQuestion + 1)/ questions.length)*100;
-    progressBar.width = width + "%";
+function restart() {
+    window.location.replace("index.html");
 }
