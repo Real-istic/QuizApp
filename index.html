@@ -33,9 +33,9 @@
             <img src="img/Group 5.png" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title" id="questionText"></h5>
-                <div class="card mb-2">
-                    <div onclick="answer(1)" class="card-body quiz-answer-card" id="answer1">
-                        Antwort 1
+                <div onclick="answer(1)" class="card mb-2">
+                    <div class="card-body quiz-answer-card" id="answer1">
+                        Antwort 2
                     </div>
                 </div>
                 <div onclick="answer(2)" class="card mb-2">
@@ -58,7 +58,7 @@
                     <span >
                         <b id="currentQCount">1</b> von <b id="maxQcount"></b> Fragen
                     </span>
-                    <button class="btn btn-primary">nächste Frage</button>
+                    <button onclick="nextQuestion()" disabled id="nextButton" class="btn btn-primary">nächste Frage</button>
                 </div>
             </div>
         </div>

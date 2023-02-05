@@ -31,12 +31,29 @@ function answer(ans) {
 
     let question = questions[currentQuestion];
     let answerField = document.getElementById('answer' + ans);
+    let correctAnswer = document.getElementById('answer' + question.right_answer);
 
     if (ans == question.right_answer) {
         answerField.classList.add('text-bg-success')
         alert('😊 RICHTIG! 😊')
-        return
+        document.getElementById('nextButton').disabled = false;
+        init()
+
+    } else {
+        correctAnswer.classList.add('text-bg-success');
+        answerField.classList.add('text-bg-danger');
+        alert('☹ falsch ☹');
     }
-    answerField.classList.add('text-bg-danger')
-    alert('☹ falsch ☹');
+}
+
+function nextQuestion() {
+
+    document.getElementById('nextButton').disabled = true;
+    currentQuestion++;
+    init()
+    const answerCards = document.getElementsByClassName('quiz-answer-card');
+    for (let answerCard of answerCards) {
+        answerCard.classList.remove('text-bg-success');
+        answerCard.classList.remove('text-bg-danger');
+    }
 }
