@@ -26,3 +26,15 @@ body {
     cursor: pointer;
     background-color: rgb(245, 245, 245);
 }
+
+h1 {
+    text-align: center;
+}
+
+.final-screen{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

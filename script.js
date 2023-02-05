@@ -1,10 +1,24 @@
 let maxQ = questions.length;
 let currentQuestion = 0;
+let rightAnswers = 0;
 
-function init(answerField) {
+function init() {
 
     document.getElementById('maxQcount').innerHTML = `${maxQ}`;
     document.getElementById('currentQCount').innerHTML = `${currentQuestion + 1}`;
+    if (currentQuestion >= 8) {
+        let cardBody = document.getElementById('cardBody');
+        cardBody.innerHTML =/*html*/ `
+        <div class="final-screen">
+        <h1>Quiz beendet! </h1>
+        <img src="" alt="">
+        <span>Du hast ${rightAnswers} von ${maxQ} Fragen beantwortet</span>
+        </div>
+        `;
+        alert('Gratulation!');
+        return;
+    }
+    statusBar()
     showQuestion()
 }
 
@@ -16,6 +30,7 @@ function showQuestion() {
 }
 
 function showAnswers(question) {
+    
     let answer1 = document.getElementById('answer1');
     let answer2 = document.getElementById('answer2');
     let answer3 = document.getElementById('answer3');
@@ -35,25 +50,32 @@ function answer(ans) {
 
     if (ans == question.right_answer) {
         answerField.classList.add('text-bg-success')
-        alert('😊 RICHTIG! 😊')
+        rightAnswers++;
         document.getElementById('nextButton').disabled = false;
         init()
 
     } else {
         correctAnswer.classList.add('text-bg-success');
         answerField.classList.add('text-bg-danger');
-        alert('☹ falsch ☹');
+        document.getElementById('nextButton').disabled = false;
     }
 }
 
 function nextQuestion() {
 
-    document.getElementById('nextButton').disabled = true;
-    currentQuestion++;
-    init()
     const answerCards = document.getElementsByClassName('quiz-answer-card');
     for (let answerCard of answerCards) {
         answerCard.classList.remove('text-bg-success');
         answerCard.classList.remove('text-bg-danger');
     }
+    document.getElementById('nextButton').disabled = true;
+    currentQuestion++;
+    
+    init()
+}
+
+function statusBar(){
+    let progressBar = document.getElementById('progressBar').style;
+    let width = ((currentQuestion + 1)/ questions.length)*100;
+    progressBar.width = width + "%";
 }
