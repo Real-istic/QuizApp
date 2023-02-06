@@ -2,8 +2,10 @@ let maxQ = questions.length;
 let currentQuestion = 0;
 let rightAnswers = 0;
 
-var firstAnswerStatus = true;
-
+let answerField1 = document.getElementById('answer1');
+let answerField2 = document.getElementById('answer2');
+let answerField3 = document.getElementById('answer3');
+let answerField4 = document.getElementById('answer4');
 
 let AUDIOsuccess = new Audio('sounds/success.mp3');
 let AUDIOfail = new Audio('sounds/fail.mp3');
@@ -15,9 +17,8 @@ function init() {
     if (currentQuestion >= 8) {
         insertHTML();
     }
-    statusBar()
-    showQuestion()
-
+    statusBar();
+    showQuestion();
 }
 
 function insertHTML() {
@@ -69,12 +70,14 @@ function answer(ans) {
     let correctAnswer = document.getElementById('answer' + question.right_answer);
 
     if (ans == question.right_answer) {
+        deactivateAnswerFields();
         answerField.classList.add('text-bg-success')
         rightAnswers++;
         document.getElementById('nextButton').disabled = false;
         AUDIOsuccess.play();
-        init()
+        // init()
     } else {
+        deactivateAnswerFields();
         correctAnswer.classList.add('text-bg-success');
         answerField.classList.add('text-bg-danger');
         document.getElementById('nextButton').disabled = false;
@@ -82,7 +85,25 @@ function answer(ans) {
     }
 }
 
+function deactivateAnswerFields() {
+    
+        answerField1.classList.add("disabled");
+        answerField2.classList.add("disabled");
+        answerField3.classList.add("disabled");
+        answerField4.classList.add("disabled");
+
+}
+
+function activateAnswerFields(){
+
+        answerField1.classList.remove("disabled");
+        answerField2.classList.remove("disabled");
+        answerField3.classList.remove("disabled");
+        answerField4.classList.remove("disabled");
+}
+
 function nextQuestion() {
+    activateAnswerFields();
 
     const answerCards = document.getElementsByClassName('quiz-answer-card');
     for (let answerCard of answerCards) {

@@ -1,6 +1,5 @@
 body {
   background-color: #183ce8 !important;
-  /* min-height: 100vh; */
 }
 
 img{
@@ -50,6 +49,12 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
 }
 
 @media (max-width: 600px) {
