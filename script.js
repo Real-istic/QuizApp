@@ -28,7 +28,7 @@ function insertHTML() {
             <h1>Quiz beendet! </h1>
             <img src="img/Group 5.png" alt="">
             <br>
-            <h5>Du hast ${rightAnswers} von ${maxQ} Fragen beantwortet</h5>
+            <h5>Du hast ${rightAnswers} von ${maxQ} Fragen richtig beantwortet!</h5>
             <br>
             <button class="btn btn-primary" onclick="restart()">Quiz neu starten</button>
         </div>
